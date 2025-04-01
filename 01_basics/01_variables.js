@@ -5,7 +5,7 @@ because of issue in block scope and functional scope
 
 const accountId = 144553
 let accountEmail = "farhan@gmail.com"   // scope variable don't have any effect outside the scope.
-var accountPassword = "12345"       // scope variable ouside gets changed
+var accountPassword = "12345"       // scope variable outside gets changed
 accountCity = "Kolkata"     // Avoid using such kind of variable declaration
 /*
 if you do like this then it will create a global variable and won't show any error

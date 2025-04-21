@@ -180,7 +180,6 @@ console.log(`Hello, ${_name}!`); // "Hello, Alice!"
 function reverseString(str) {
     return str.split("").reverse().join("");    // -> array -> reversed -> joined back to string
 }
-
 console.log(reverseString("JavaScript")); // "tpircSavaJ"
 
 

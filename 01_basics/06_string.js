@@ -9,7 +9,7 @@ const gameName = new String('Farhan');
 console.log(gameName);  // [String: 'Farhan']
 
 console.log(gameName[0]);
-console.log(gameName.__proto__);
+console.log(gameName.__proto__);    // {}
 
 console.log(gameName.length);       // 6
 console.log(gameName.toUpperCase()) //FARHAN

@@ -104,9 +104,31 @@ function shadow() {
 
 shadow();
 console.log(x); // 10
+// =========================================
+// 8. Hoisting in JavaScript
+// =========================================
+
+// Hoisting is JavaScript's default behavior of moving declarations to the top of the current scope
+
+// Example 1: Function Declaration is hoisted
+console.log(hoistedFunc()); // Output: "I am hoisted!"
+
+function hoistedFunc() {
+  return "I am hoisted!";
+}
+
+// Example 2: var is hoisted but not initialized
+console.log(hoistedVar); // Output: undefined
+var hoistedVar = "I exist";
+
+// Example 3: let and const are hoisted but not initialized (temporal dead zone)
+// console.log(hoistedLet); // ❌ ReferenceError
+// console.log(hoistedConst); // ❌ ReferenceError
+let hoistedLet = "Blocked";
+const hoistedConst = "Blocked too";
 
 // =========================================
-// 8. Interview Questions on Scope
+// 9. Interview Questions on Scope and Hoisting
 // =========================================
 
 /*
@@ -127,11 +149,21 @@ Ans: When a local variable has the same name as a variable in an outer scope, it
 
 Q6. What is the difference between block scope and function scope?
 Ans: Block scope is limited to {}, function scope is limited to the entire function body.
+
+Q7. What is hoisting in JavaScript?
+Ans: It's the behavior where variable and function declarations are moved to the top of their scope before code execution.
+
+Q8. Are let and const hoisted?
+Ans: Yes, but they are not initialized. Accessing them before declaration causes a ReferenceError.
+
+Q9. Can you explain Temporal Dead Zone?
+Ans: It's the time between the hoisting of let/const and their actual declaration in the code.
 */
 
 // =========================================
-// End of Scope Revision
+// End of Scope and Hoisting Revision
 // =========================================
+
 
 // ==========================================
 // IMPORTANT -> var is a function-scoped variable

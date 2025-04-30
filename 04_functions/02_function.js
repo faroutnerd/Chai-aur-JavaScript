@@ -1,173 +1,198 @@
-// JavaScript Functions Complete Revision with Interview Questions
+// JavaScript Scope, Hoisting, and Function Hoisting with Interview Questions
 
 // =========================================
-// 1. What is a Function?
+// 1. What is Scope?
 // =========================================
 
-// A function is a reusable block of code that performs a specific task.
-// It improves modularity and code reusability.
+// Scope defines where variables can be accessed or referenced in your code.
+// There are 3 main types of scope in JavaScript:
+// - Global Scope
+// - Function Scope
+// - Block Scope (ES6)
 
 // =========================================
-// 2. Function Declaration (Named Function)
+// 2. Global Scope
 // =========================================
 
-function greet() {
-    console.log("Hello World!");
+var globalVar = "I'm global";
+
+function showGlobal() {
+  console.log(globalVar); // Accessible
+}
+
+showGlobal();
+console.log(globalVar); // Accessible
+
+// =========================================
+// 3. Function Scope
+// =========================================
+
+function testScope() {
+  var insideFunction = "Only inside";
+  console.log(insideFunction); // ✅
+}
+
+testScope();
+// console.log(insideFunction); // ❌ Error: not defined outside
+
+// =========================================
+// 4. Block Scope (let and const)
+// =========================================
+
+{
+  let blockLet = "Block Scoped";
+  const blockConst = "Also Block Scoped";
+  console.log(blockLet); // ✅
+  console.log(blockConst); // ✅
+}
+
+// console.log(blockLet); // ❌ Error
+// console.log(blockConst); // ❌ Error
+
+// var is NOT block scoped
+{
+  var notBlockScoped = "Accessible outside block";
+}
+console.log(notBlockScoped); // ✅
+
+// =========================================
+// 5. Scope Chain
+// =========================================
+
+// JavaScript looks outward to find a variable
+
+let a = "Global";
+
+function outer() {
+  let b = "Outer";
+  function inner() {
+    let c = "Inner";
+    console.log(a, b, c); // Has access to all variables above it
   }
-  
-  greet(); // Output: Hello World!
-  
-  // =========================================
-  // 3. Function Expression (Anonymous Function)
-  // =========================================
-  
-  const add = function(a, b) {
-    return a + b;
-  };
-  
-  console.log(add(2, 3)); // Output: 5
-  
-  // =========================================
-  // 4. Arrow Function (ES6)
-  // =========================================
-  
-  const multiply = (x, y) => {
-    return x * y;
-  };
-  
-  console.log(multiply(4, 5)); // Output: 20
-  
-  // If only one line and one return, we can shorten:
-  const square = (n) => n * n;
-  console.log(square(6)); // Output: 36
-  
-  // =========================================
-  // 5. Parameters vs Arguments
-  // =========================================
-  
-  // Parameters are variables listed inside the function definition.
-  // Arguments are the actual values passed to the function.
-  
-  function sayHello(name) { // name is a parameter
-    console.log(`Hello, ${name}`);
+  inner();
+}
+
+outer();
+
+// =========================================
+// 6. Lexical Scope
+// =========================================
+
+// Lexical scope means a function can access variables from its outer scope
+
+function outerLexical() {
+  let outerVar = "Outer Lexical";
+
+  function innerLexical() {
+    console.log(outerVar); // ✅
   }
-  
-  sayHello("Alice"); // "Alice" is an argument
-  
-  // =========================================
-  // 6. Default Parameters
-  // =========================================
-  
-  function greetUser(name = "Guest") {
-    console.log(`Welcome, ${name}`);
-  }
-  
-  greetUser(); // Output: Welcome, Guest
-  
-  greetUser("John"); // Output: Welcome, John
-  
-  // =========================================
-  // 7. Rest Parameters (...args)
-  // =========================================
-  
-  function sumAll(...numbers) {
-    return numbers.reduce((total, num) => total + num, 0);  // numbers.reduce() is used to sum all elements in the array
-  }
-  
-  console.log(sumAll(1, 2, 3, 4)); // Output: 10
-  
-  // =========================================
-  // 8. Return Statement
-  // =========================================
-  
-  function subtract(a, b) {
-    return a - b;
-    console.log("This won't run after return");
-  }
-  
-  console.log(subtract(10, 4)); // Output: 6
-  
-  // =========================================
-  // 9. Function Hoisting
-  // =========================================
-  
-  // Function declarations are hoisted to the top of their scope.
-  console.log(hoistedFunction()); // Output: I am hoisted!
-  
-  function hoistedFunction() {
-    return "I am hoisted!";
-  }
-  
-  // Function expressions and arrow functions are NOT hoisted.
-  
-  // =========================================
-  // 10. Anonymous Function
-  // =========================================
-  
-  const anon = function() {
-    console.log("I am an anonymous function!");
-  };
-  
-  anon();
-  
-  // =========================================
-  // 11. Callback Functions
-  // =========================================
-  
-  // A function passed as an argument to another function
-  
-  function processUserInput(callback) {
-    const name = "Bob";
-    callback(name);
-  }
-  
-  processUserInput(function(name) {
-    console.log(`Hello, ${name}`);
-  }); // Output: Hello, Bob
-  
-  // =========================================
-  // 12. IIFE (Immediately Invoked Function Expression)
-  // =========================================
-  
-  (function() {
-    console.log("IIFE ran!");
-  })();
-  
-  // =========================================
-  // 13. Arrow Functions vs Normal Functions
-  // =========================================
-  
-  // - Arrow functions do NOT have their own 'this'.
-  // - Useful for shorter syntax and inside callbacks.
-  
-  // =========================================
-  // 14. Interview Questions and Answers
-  // =========================================
-  
-  /*
-  Q1. What is the difference between function declaration and expression?
-  Ans: Declaration is hoisted, expression is not.
-  
-  Q2. What is a callback function?
-  Ans: A function passed as an argument to another function.
-  
-  Q3. What is the difference between parameters and arguments?
-  Ans: Parameters are placeholders; arguments are actual values passed.
-  
-  Q4. What is an IIFE?
-  Ans: A function that runs immediately after being defined.
-  
-  Q5. What is the difference between normal function and arrow function?
-  Ans: Arrow functions do not have their own 'this' context.
-  
-  Q6. Can you return multiple values from a function?
-  Ans: Yes, by returning an array or an object.
-  
-  Q7. What is function hoisting?
-  Ans: Moving function declarations to the top of the scope before execution.
-  */
-  
-  // =========================================
-  // End of Functions Revision
-  // =========================================
-  
+  innerLexical();
+}
+
+outerLexical();
+
+// =========================================
+// 7. Variable Shadowing
+// =========================================
+
+let x = 10;
+
+function shadow() {
+  let x = 20; // Shadows global x
+  console.log(x); // 20
+}
+
+shadow();
+console.log(x); // 10
+
+// =========================================
+// 8. Hoisting in JavaScript
+// =========================================
+
+// Hoisting is JavaScript's default behavior of moving declarations to the top of the current scope
+
+// Example 1: Function Declaration is hoisted
+console.log(hoistedFunc()); // Output: "I am hoisted!"
+
+function hoistedFunc() {
+  return "I am hoisted!";
+}
+
+// Example 2: var is hoisted but not initialized
+console.log(hoistedVar); // Output: undefined
+var hoistedVar = "I exist";
+
+// Example 3: let and const are hoisted but not initialized (temporal dead zone)
+// console.log(hoistedLet); // ❌ ReferenceError
+let hoistedLet = "Blocked";
+
+// =========================================
+// 9. Function Hoisting in JavaScript
+// =========================================
+
+// ✅ Function Declaration is hoisted completely
+sayHi(); // Works
+function sayHi() {
+  console.log("Hi from function declaration");
+}
+
+// ❌ Function Expression is not hoisted
+// greet(); // TypeError: greet is not a function
+var greet = function () {
+  console.log("Hi from function expression");
+};
+
+// ❌ Arrow Function is also not hoisted
+// wave(); // TypeError: wave is not a function
+const wave = () => {
+  console.log("Hi from arrow function");
+};
+
+// Summary Table
+/*
+| Function Type         | Hoisted?                   | Callable Before Declaration?  |
+|-----------------------|----------------------------|-------------------------------|
+| Function Declaration  | ✅ Yes                     | ✅ Yes                       |
+| Function Expression   | ⚠️ Partially (name only)   | ❌ No                        |
+| Arrow Function        | ⚠️ Partially (name only)   | ❌ No                        |
+*/
+
+// =========================================
+// 10. Interview Questions on Scope and Hoisting
+// =========================================
+
+/*
+Q1. What is the difference between var, let, and const in terms of scope?
+Ans: var is function-scoped, let and const are block-scoped.
+
+Q2. What is lexical scope?
+Ans: Lexical scope means inner functions have access to variables defined in outer functions.
+
+Q3. What is scope chain?
+Ans: The mechanism by which JavaScript resolves variable names by searching through parent scopes.
+
+Q4. Can you access a variable declared inside a function from outside it?
+Ans: No, unless it's returned or stored globally.
+
+Q5. What is variable shadowing?
+Ans: When a local variable has the same name as a variable in an outer scope, it 'shadows' it.
+
+Q6. What is the difference between block scope and function scope?
+Ans: Block scope is limited to {}, function scope is limited to the entire function body.
+
+Q7. What is hoisting in JavaScript?
+Ans: It's the behavior where variable and function declarations are moved to the top of their scope before code execution.
+
+Q8. Are let and const hoisted?
+Ans: Yes, but they are not initialized. Accessing them before declaration causes a ReferenceError.
+
+Q9. Can you explain Temporal Dead Zone?
+Ans: It's the time between the hoisting of let/const and their actual declaration in the code.
+
+Q10. Are function expressions hoisted?
+Ans: Only the variable name is hoisted, not the function body.
+*/
+
+// =========================================
+// End of Scope, Hoisting, and Function Hoisting Revision
+// =========================================
